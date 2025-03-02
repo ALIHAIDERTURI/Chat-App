@@ -6,7 +6,14 @@ import messageRoutes from "./routes/messageRoutes.js";
 import dbConnection from "./db/dbConfig.js";
 import userRoutes from "./routes/userRoutes.js"
 import cors from "cors";
-const app = express();
+import {app, server} from "./sockets/socket.js"
+import path from "path"
+
+configDotenv();
+const port = process.env.PORT || 8000;
+const __dirname = path.resolve();
+
+app.use(express.static(path.join(__dirname, "/client/dist")))
 
 app.use(cors(
   {
@@ -27,10 +34,11 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/messages", messageRoutes);
 app.use("/api/v1/users", userRoutes);
 
-configDotenv();
-const port = process.env.PORT || 8000;
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/client/dist/index.html"))
+})
 
-app.listen(port, () => {
-  dbConnection(); // connecting db
+server.listen(port, () => {
+  dbConnection();
   console.log(`Server is running on port ${port}`);
 });
