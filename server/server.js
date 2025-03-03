@@ -37,8 +37,8 @@ app.use("/api/v1/messages", messageRoutes);
 app.use("/api/v1/users", userRoutes);
 
 // Serve React App for all other routes
-app.get("*", (req, res) => {
-  res.sendFile(path.join(clientBuildPath, "index.html"));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
 });
 server.listen(port, () => {
   dbConnection();
