@@ -1,13 +1,11 @@
 {
   "name": "chat-app",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
+ "workspaces": ["client", "server"],
   "scripts": {
-  "server": "nodemon server/server.js",
-  "start": "node server/server.js",
-  "heroku-postbuild": "cd client && npm install --production=false && npm run build"
-
-},
+    "start": "cd server && node server.js"
+  },
   "type": "module",
   "keywords": [],
   "author": "",

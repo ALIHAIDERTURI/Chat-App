@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Serve React Frontend (Vite Build)
-const clientBuildPath = path.join(__dirname, "client", "dist");
+app.use(express.static(path.join(__dirname, "../client/dist")));
 app.use(express.static(clientBuildPath));
 
 app.get("/", (req, res) => {
@@ -37,8 +37,8 @@ app.use("/api/v1/messages", messageRoutes);
 app.use("/api/v1/users", userRoutes);
 
 // Serve React App for all other routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
 });
 server.listen(port, () => {
   dbConnection();
