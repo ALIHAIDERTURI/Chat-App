@@ -4,8 +4,9 @@
   "main": "server.js",
  "workspaces": ["client", "server"],
   "scripts": {
-    "start": "cd server && node server.js"
-  },
+  "heroku-postbuild": "cd client && npm install && npm run build",
+  "start": "cd server && node server.js"
+},
   "type": "module",
   "keywords": [],
   "author": "",
@@ -24,8 +25,8 @@
   "devDependencies": {
     "nodemon": "^3.1.7"
   },
-  "engines": {
-  "node": "22.x",
+ "engines": {
+  "node": "20.x",
   "npm": "10.x"
 }
 
