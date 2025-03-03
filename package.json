@@ -5,7 +5,8 @@
   "scripts": {
   "server": "nodemon server/server.js",
   "start": "node server/server.js",
-  "heroku-postbuild": "cd client && npm install --legacy-peer-deps && npm run build"
+  "heroku-postbuild": "cd client && npm install --production=false && npm run build"
+
 },
   "type": "module",
   "keywords": [],
@@ -24,5 +25,10 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.7"
-  }
+  },
+  "engines": {
+  "node": "22.x",
+  "npm": "10.x"
+}
+
 }
